@@ -3,7 +3,7 @@
 
 This application is deployed using docker containter and digitalocean for hosting.
   - you can access it via swagger here at http://165.22.58.190:8086/swagger-ui.html
-  - also you use mysql workbench to access the database.
+  - also you can use mysql workbench to access the database.
     - hostname: 165.22.58.190:3308
     - username: root
     - password: 123456
