@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.model.Menu;
@@ -25,7 +26,7 @@ public class MenuService {
 	private final MenuRepository menuRepo;
 	
 	public Page<Menu> get(Integer page, Integer limit){
-		Pageable pageable = PageRequest.of(page - 1, limit);
+		Pageable pageable = PageRequest.of(page - 1, limit, Sort.by("id").descending());
 		Page<Menu> pageResult = menuRepo.findAll(pageable);
 		return Optional.ofNullable(pageResult).orElse(Page.empty());
 	}

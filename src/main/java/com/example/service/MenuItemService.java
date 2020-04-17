@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.model.Menu;
@@ -30,7 +31,7 @@ public class MenuItemService {
 	private final MenuRepository menuRepo;
 	
 	public Page<MenuItem> get(Integer menuId, Integer page, Integer limit){
-		Pageable pageable = PageRequest.of(page - 1, limit);
+		Pageable pageable = PageRequest.of(page - 1, limit, Sort.by("id").descending());
 		Menu menu = menuRepo.findById(menuId)
 				.orElseThrow(RecordNotFoundException::new);
 		Page<MenuItem> pageResult = itemRepo.findByMenu(menu, pageable);
